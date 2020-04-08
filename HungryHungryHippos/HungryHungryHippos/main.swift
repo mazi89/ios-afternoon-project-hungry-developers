@@ -45,9 +45,13 @@ class Developer {
         if leftSpoon.index < rightSpoon.index {
             leftSpoon.pickUp()
             print("Dev\(id) picked up left spoon.")
+            rightSpoon.pickUp()
+            print("Dev\(id) picked up right spoon.")
         } else {
             rightSpoon.pickUp()
             print("Dev\(id) picked up right spoon.")
+            leftSpoon.pickUp()
+            print("Dev\(id) picked up left spoon.")
         }
         return
     }
