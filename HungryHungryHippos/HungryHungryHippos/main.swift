@@ -42,17 +42,10 @@ class Developer {
     // MARK: - Methods
     
     func think(_ id: Int) {
-        if leftSpoon.index < rightSpoon.index {
-            leftSpoon.pickUp()
-            print("Dev\(id) picked up left spoon.")
-            rightSpoon.pickUp()
-            print("Dev\(id) picked up right spoon.")
-        } else {
-            rightSpoon.pickUp()
-            print("Dev\(id) picked up right spoon.")
-            leftSpoon.pickUp()
-            print("Dev\(id) picked up left spoon.")
-        }
+        leftSpoon.pickUp()
+        print("Dev\(id) picked up left spoon.")
+        rightSpoon.pickUp()
+        print("Dev\(id) picked up right spoon.")
         return
     }
     
@@ -83,6 +76,8 @@ class Developer {
 }
 
 
+
+
 var spoon1 = Spoon(1)
 var spoon2 = Spoon(2)
 var spoon3 = Spoon(3)
@@ -95,6 +90,10 @@ var dev4 = Developer(spoon4, spoon1)
 
 var developers = [dev1, dev2, dev3, dev4]
 
+let waiter = DispatchSemaphore(value: 4)
+
 DispatchQueue.concurrentPerform(iterations: 4) { i in
+    waiter.wait()
     developers[i].run(i+1)
+    waiter.signal()
 }
