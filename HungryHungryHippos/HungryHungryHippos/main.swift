@@ -58,7 +58,8 @@ class Developer {
     
     func eat(_ id: Int) {
         print("Dev\(id) about to eat some good stuff.")
-        usleep(useconds_t.random(in: 0...1000000))
+//        usleep(useconds_t.random(in: 0...1000000))
+        usleep(100)
         rightSpoon.putDown()
         print("Dev\(id) put down left spoon.")
         leftSpoon.putDown()
